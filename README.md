@@ -9,7 +9,7 @@ e 10000000 enquanto as threads consumidoras dizem se esse número é primo ou n�
 ## Spinlocks
 Corresponde a um sistema multithreaded com a soma de N valores aleatórios entre -100 e 100, com K threads cuja concorrência é controlada por um lock com test-and-set.
 
-### Instalação
+### Instalação e execução
 Enquanto o arquivo makefile não for empurrado, no diretório do arquivo C alvo:
 ```sh
 gcc PCSem.c -lpthread -lrt -o semaforo -lm
