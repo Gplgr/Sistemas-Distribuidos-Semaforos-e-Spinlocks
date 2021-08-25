@@ -24,5 +24,5 @@ gcc PCSem.c -lpthread -lrt -o spinlocks -lm
 ```
 seguido de
 ```sh
-./ spinlocks
+./spinlocks
 ```
