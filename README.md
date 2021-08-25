@@ -20,7 +20,7 @@ seguido de
 ```
 ou
 ```sh
-gcc Somador.c -lpthread -lrt -o spinlocks -lm
+gcc Somador.c -lpthread -o spinlocks
 ```
 seguido de
 ```sh
