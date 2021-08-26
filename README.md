@@ -10,19 +10,20 @@ e 10000000 enquanto as threads consumidoras dizem se esse número é primo ou n�
 Corresponde a um sistema multithreaded com a soma de N valores aleatórios entre -100 e 100, com K threads cuja concorrência é controlada por um lock com test-and-set.
 
 ### Instalação e execução
-Enquanto o arquivo makefile não for empurrado, no diretório do arquivo C alvo:
+*Precisa de um compilador da linguagem C instalado (de preferência gcc em um sistema ou subsistema Linux).
+Em um prompt de comando no diretório do arquivo específico, execute os comandos respectivos para o Semáforo ou para Spinlocks:
 ```sh
-gcc PCSem.c -lpthread -lrt -o semaforo -lm
+gcc PCSem.c -lpthread -lrt -lm
 ```
 seguido de 
 ```sh
-./semaforo
+./a.out
 ```
 ou
 ```sh
-gcc Somador.c -lpthread -o spinlocks
+gcc Somador.c -lpthread
 ```
 seguido de
 ```sh
-./spinlocks
+./a.out
 ```
