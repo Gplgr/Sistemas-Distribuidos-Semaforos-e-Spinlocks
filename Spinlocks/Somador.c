@@ -21,8 +21,7 @@ struct lock lock;
 
 //tentei nao usar como global mas vi todos os erros possiveis tentando passar uma estrutura que continha
 //as tres variaveis anteriores e esse vetor como parametro pras threads
-//desisti e foi a melhor coisa que eu fiz
-int *vetor = NULL;
+char *vetor = NULL;
 
 //test and set conforme apresentado na aula
 bool test_and_set(bool *flag) {
@@ -64,6 +63,7 @@ int main(int argc, char *argv[]){
     scanf("%d",&N);
     printf("Insira o valor de K: ");
     scanf("%d",&K);
+
 
     //setando o vetor de threads
     pthread_t threads[K];

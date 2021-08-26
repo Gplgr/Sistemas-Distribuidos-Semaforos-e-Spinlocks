@@ -43,6 +43,8 @@ void* produtor(void* arg){
         escrevinhador = gerador();
         sem_wait(&empty);
         sem_wait(&mutex);
+        int value;
+        sem_getvalue(&empty,&value);
         //verifica onde tem espaco livre e salva no vetor
         for (int i = 0; i < N; ++i){
             if (querovaga[i] == 0){
@@ -50,18 +52,16 @@ void* produtor(void* arg){
                 escrevinhador = 0;
                 break;
             };
-            //Se entrar aqui e porque nao achou vaga mesmo quando disseram que tinha
-            if (escrevinhador != 0) {
-                printf("Tem algo errado no produtor\n");
-            };
+        };
+        if (impressaominha >= 9999){
+            sem_post(&mutex);
+            sem_post(&full);
+            sem_post(&empty);
+            break;
         };
         sem_post(&mutex);
         sem_post(&full);
-        //Se ja tiverem terminado, para onde esta
-        if (impressaominha==10000){
-            pthread_exit(0);
-        };
-    }
+    };
 };
 
 //Funcao consumidor
@@ -78,16 +78,6 @@ void* consumidor(void* arg){
                 queronumero[i] = 0;
                 break;
             };
-            //Se entrar aqui e porque nao achou item mesmo quando disseram que tinha
-            if (leitao == 0) {
-                printf("Tem algo errado no consumidor\n");
-            };
-        };
-        //se alguem ja tiver chegado antes, desiste e sai
-        if (impressaominha==10000){
-            sem_post(&mutex);
-            sem_post(&empty);
-            pthread_exit(0);
         };
         //avisa que tem mais um sendo lido e impresso
         impressaominha++;
@@ -150,5 +140,8 @@ int main (int argc, char *argv[]) {
     clock_t end = clock();    
     double tempo = (double)(end - begin) / CLOCKS_PER_SEC;
     printf("O tempo total foi de %f\n", tempo);
+    sem_destroy(&mutex);
+    sem_destroy(&empty);
+    sem_destroy(&full);
     return 0;
 };
